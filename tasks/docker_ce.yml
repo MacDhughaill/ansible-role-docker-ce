@@ -1,8 +1,0 @@
----
-# Consult defaults/main.yml to learn about the role variables.
-
-- name: Install Python control of Docker
-  pip:
-    name: docker
-    state: present
-    virtualenv: "{{ docker_ce_python_virtualenv | default('omit') }}"

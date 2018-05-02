@@ -1,9 +1,9 @@
 ---
-- name: Include tasks for Docker Community Edition on Red Hat
-  include_tasks: docker_ce_redhat.yml
-  when:
-    - ansible_os_family == "RedHat"
-    - ansible_pkg_mgr == "yum"
+- import_tasks: docker_ce_CentOS_tasks.yml
+  when: ansible_distribution == "CentOS"
 
-- name: Import tasks for Docker Community Edition
-  import_tasks: docker_ce.yml
+- name: Start and enable the Docker daemon
+  systemd:
+    name: docker
+    state: started
+    enabled: true
