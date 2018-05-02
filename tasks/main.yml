@@ -1,0 +1,9 @@
+---
+- name: Include tasks for Docker Community Edition on Red Hat
+  include_tasks: docker_ce_redhat.yml
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_pkg_mgr == "yum"
+
+- name: Import tasks for Docker Community Edition
+  import_tasks: docker_ce.yml
