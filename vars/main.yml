@@ -12,3 +12,6 @@ docker_ce_CentOS_old_Docker_pkgs:
   - docker-engine
   - docker-python
   - python-docker-py
+docker_ce_CentOS_packages:
+  - docker-ce
+  - python-virtualenv

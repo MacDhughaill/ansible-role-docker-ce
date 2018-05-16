@@ -1,0 +1,2 @@
+---
+docker_ce_python_virtualenv: "/home/{{ ansible_user_id }}/docker_py_virt"
