@@ -2,10 +2,19 @@
 - import_tasks: docker_ce_CentOS_tasks.yml
   when: ansible_distribution == "CentOS"
 
-- name: Start and enable the Docker daemon
-  systemd:
-    name: docker
-    state: started
-    enabled: true
-    daemon_reload: true
+- block:
+  - name: Create configuration file for Docker daemon
+    template:
+      src: daemon.json.j2
+      dest: /etc/docker/daemon.json
+      backup: true
+    when: docker_ce_daemon_json is defined
+    register: docker_ce_template_task
+
+  - name: Start and enable the Docker service
+    systemd:
+      name: docker
+      state: "{{ (docker_ce_template_task.changed) | ternary('restarted','started') }}"
+      enabled: true
+      daemon_reload: true
   become: true

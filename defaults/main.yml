@@ -1,2 +1,5 @@
 ---
+# Must be in list format, even with single item.
+# Each item must be enclosed in single quotes.
+#docker_ce_daemon_json:
 docker_ce_python_virtualenv: "/home/{{ ansible_user_id }}/docker_py_virt"
