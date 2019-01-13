@@ -3,6 +3,12 @@
   when: ansible_distribution == "CentOS"
 
 - block:
+  - name: Create directory for Docker daemon configuration file
+    file:
+      path: /etc/docker
+      state: directory
+    when: docker_ce_daemon_json is defined
+    
   - name: Create configuration file for Docker daemon
     template:
       src: daemon.json.j2
